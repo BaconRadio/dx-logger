@@ -1,15 +1,23 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { CreateLogbookDto } from './dto/create-logbook.dto';
 import { UpdateLogbookDto } from './dto/update-logbook.dto';
+import { Logbook, LogbookDocument } from './schemas/logbook.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class LogbooksService {
+
+  constructor(
+    @InjectModel(Logbook.name) private readonly logbookModel: Model<LogbookDocument>
+  ) {}
+
   create(createLogbookDto: CreateLogbookDto) {
-    return 'This action adds a new logbook';
+    return this.logbookModel.create(createLogbookDto);
   }
 
-  findAll() {
-    return `This action returns all logbooks`;
+  async findAll() {
+    return this.logbookModel.find().exec();
   }
 
   findOne(id: number) {

@@ -1,1 +1,5 @@
-export class CreateLogbookDto {}
+export class CreateLogbookDto {
+    name: string;
+    callsign: string;
+    gridSquare: string;
+}
