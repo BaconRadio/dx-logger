@@ -1,0 +1,13 @@
+misc.
+- [ ] update readme.md
+
+back-end
+- [ ] station schema
+- [ ] log schema relations
+- [ ] logbook CRUD
+- [ ] log CRUD
+- [ ] station CRUD
+
+
+front-end
+- [ ] Header mobile responsive

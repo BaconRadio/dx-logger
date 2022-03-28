@@ -5,5 +5,3 @@
 - db.createUser({user: "server", pwd: "password", roles: [{role:"readWrite", db:"dx-logger-db"}]})
 
 
-## TODO 
-- [ ] Header mobile responsive
