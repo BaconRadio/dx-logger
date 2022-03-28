@@ -3,8 +3,8 @@ dist
 node_modules
 
 # Logs
-logs
-*.log
+# logs - invalid due to logs api
+# *.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
