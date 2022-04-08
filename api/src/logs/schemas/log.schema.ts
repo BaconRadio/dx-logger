@@ -15,8 +15,8 @@ export class Log {
   logbook: Logbook;
 
   // TODO
-  @Prop()
-  station: Station;
+  // @Prop()
+  // station: Station;
 
   /*
 
