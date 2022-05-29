@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Club } from './club.model';
+import { AddClubDto, UpdateClubDto } from './dto';
 
 @Injectable()
 export class ClubService {
@@ -10,9 +11,9 @@ export class ClubService {
     @InjectModel('Club') private readonly clubModel: Model<Club>,
   ) {}
 
-  async newClub(clubName: string) {
+  async newClub(dto: AddClubDto) {
     const newClub = new this.clubModel({
-      clubName,
+      clubName: dto.clubName,
     });
     const result = await newClub.save();
     return result.id as string;
@@ -36,11 +37,11 @@ export class ClubService {
 
   async updateClub(
     clubId: string,
-    clubName: string,
+    dto: UpdateClubDto,
   ) {
     const updatedClub = await this.findClub(clubId);
-    if (clubName) {
-        updatedClub.clubName = clubName;
+    if (dto.clubName) {
+        updatedClub.clubName = dto.clubName;
     }
     updatedClub.save();
   }
