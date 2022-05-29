@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { AddStationDto, UpdateStationDto } from './dto';
 
 import { Station } from './station.model';
 
@@ -10,17 +11,12 @@ export class StationService {
     @InjectModel('Station') private readonly stationModel: Model<Station>,
   ) { }
 
-  async newStation(
-    stationName: string,
-    dxcc: string,
-    gridSquare: string,
-    notes: string,
-  ) {
+  async newStation(dto: AddStationDto) {
     const newStation = new this.stationModel({
-      stationName,
-      dxcc,
-      gridSquare,
-      notes,
+      stationName: dto.stationName,
+      dxcc: dto.dxcc,
+      gridSquare: dto.dxcc,
+      notes: dto.notes,
     });
     const result = await newStation.save();
     return result.id as string;
@@ -48,23 +44,20 @@ export class StationService {
 
   async updateStation(
     stationId: string,
-    stationName: string,
-    dxcc: string,
-    gridSquare: string,
-    notes: string,
+    dto: UpdateStationDto,
   ) {
     const updatedStation = await this.findStation(stationId);
-    if (stationName) {
-      updatedStation.stationName = stationName;
+    if (dto.stationName) {
+      updatedStation.stationName = dto.stationName;
     }
-    if (dxcc) {
-      updatedStation.dxcc = dxcc;
+    if (dto.dxcc) {
+      updatedStation.dxcc = dto.dxcc;
     }
-    if (gridSquare) {
-      updatedStation.gridSquare = gridSquare;
+    if (dto.gridSquare) {
+      updatedStation.gridSquare = dto.gridSquare;
     }
-    if (notes) {
-      updatedStation.notes = notes;
+    if (dto.notes) {
+      updatedStation.notes = dto.notes;
     }
     updatedStation.save();
   }

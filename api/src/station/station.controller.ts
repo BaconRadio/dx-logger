@@ -7,6 +7,7 @@ import {
     Patch,
     Delete,
   } from '@nestjs/common';
+import { AddStationDto, UpdateStationDto } from './dto';
   
   import { StationService } from './station.service';
   
@@ -16,17 +17,9 @@ import {
   
     @Post()
     async addStation(
-      @Body('stationName') stationName: string,
-      @Body('dxcc') dxcc: string,
-      @Body('gridSquare') gridSquare: string,
-      @Body('notes') notes: string,
+      @Body() dto: AddStationDto,
     ) {
-      const stationId = await this.stationService.newStation(
-        stationName,
-        dxcc,
-        gridSquare,
-        notes,
-      );
+      const stationId = await this.stationService.newStation(dto);
       return { id: stationId };
     }
   
@@ -44,12 +37,9 @@ import {
     @Patch(':id')
     async updateStation(
       @Param('id') stationId: string,
-      @Body('stationName') stationName: string,
-      @Body('dxcc') dxcc: string,
-      @Body('gridSquare') gridSquare: string,
-      @Body('notes') notes: string,
+      @Body() dto: UpdateStationDto,
     ) {
-      await this.stationService.updateStation(stationId, stationName, dxcc, gridSquare, notes);
+      await this.stationService.updateStation(stationId, dto);
       return null;
     }
   
