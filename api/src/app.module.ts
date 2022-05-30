@@ -9,7 +9,7 @@ import { LogsModule } from './logs/logs.module';
 import { UserModule } from './user/user.module';
 import { ClubModule } from './club/club.module';
 import { StationModule } from './station/station.module';
-import { SatellightModule } from './satellight/satellight.module';
+import { SatelliteModule } from './satellite/satellite.module';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { SatellightModule } from './satellight/satellight.module';
     UserModule,
     ClubModule,
     StationModule,
-    SatellightModule
+    SatelliteModule
   ],
   controllers: [AppController],
   providers: [AppService],
