@@ -7,7 +7,7 @@ import {
     Patch,
     Delete,
   } from '@nestjs/common';
-import { AddSatelliteDto } from './dto';
+import { AddSatelliteDto, UpdateSatelliteDto } from './dto';
   
   import { SatelliteService } from './satellite.service';
   
@@ -37,7 +37,7 @@ import { AddSatelliteDto } from './dto';
     @Patch(':id')
     async updateSatellite(
       @Param('id') satelliteId: string,
-      @Body() dto: AddSatelliteDto,
+      @Body() dto: UpdateSatelliteDto,
     ) {
       await this.satelliteService.updateSatellite(satelliteId, dto);
       return null;
