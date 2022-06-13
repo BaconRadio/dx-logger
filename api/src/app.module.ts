@@ -10,6 +10,8 @@ import { UserModule } from './user/user.module';
 import { ClubModule } from './club/club.module';
 import { StationModule } from './station/station.module';
 import { SatelliteModule } from './satellite/satellite.module';
+import { UserCallsignModule } from './user-callsign/user-callsign.module';
+import { ClubCallsignModule } from './club-callsign/club-callsign.module';
 
 @Module({
   imports: [
@@ -18,7 +20,9 @@ import { SatelliteModule } from './satellite/satellite.module';
     UserModule,
     ClubModule,
     StationModule,
-    SatelliteModule
+    SatelliteModule,
+    UserCallsignModule,
+    ClubCallsignModule,
   ],
   controllers: [AppController],
   providers: [AppService],
