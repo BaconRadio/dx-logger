@@ -13,6 +13,7 @@ import { SatelliteModule } from './satellite/satellite.module';
 import { UserCallsignModule } from './user-callsign/user-callsign.module';
 import { ClubCallsignModule } from './club-callsign/club-callsign.module';
 import { StationCallsignModule } from './station-callsign/station-callsign.module';
+import { StationRadioModule } from './station-radio/station-radio.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { StationCallsignModule } from './station-callsign/station-callsign.modul
     UserCallsignModule,
     ClubCallsignModule,
     StationCallsignModule,
+    StationRadioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
