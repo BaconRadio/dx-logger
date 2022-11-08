@@ -17,6 +17,10 @@ export class AddClubCallsignDto {
 
   @IsNotEmpty()
   @IsString()
+  clubID: string;
+
+  @IsNotEmpty()
+  @IsString()
   clubCallsign: string;
 
   @IsNotEmpty()

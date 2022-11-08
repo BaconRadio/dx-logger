@@ -14,6 +14,7 @@ export class ClubCallsignService {
 
   async newClubCallsign(dto: AddClubCallsignDto) {
     const newClubCallsign = new this.clubCallsignModel({
+      clubID: dto.clubID,
       clubCallsign: dto.clubCallsign,
       calsignStartDate: dto.calsignStartDate,
       calsignEndDate: dto.calsignEndDate,
@@ -25,6 +26,7 @@ export class ClubCallsignService {
   async getClubCallsigns() {
     const clubCallsigns = await this.clubCallsignModel.find().exec();
     return clubCallsigns.map(callsign => ({
+      clubID: callsign.clubID,
       clubCallsign: callsign.clubCallsign,
       calsignStartDate: callsign.calsignStartDate,
       calsignEndDate: callsign.calsignEndDate,
@@ -34,6 +36,7 @@ export class ClubCallsignService {
   async getSingleClubCallsign(clubCallsignId: string) {
     const callsign = await this.findClubCallsign(clubCallsignId);
     return {
+      clubID: callsign.clubID,
       clubCallsign: callsign.clubCallsign,
       calsignStartDate: callsign.calsignStartDate,
       calsignEndDate: callsign.calsignEndDate,
@@ -45,6 +48,9 @@ export class ClubCallsignService {
     dto: UpdateClubCallsignDto,
   ) {
     const updatedClubCallsign = await this.findClubCallsign(clubCallsignId);
+    if (dto.clubID) {
+      updatedClubCallsign.clubID = dto.clubID;
+    }
     if (dto.clubCallsign) {
       updatedClubCallsign.clubCallsign = dto.clubCallsign;
     }
