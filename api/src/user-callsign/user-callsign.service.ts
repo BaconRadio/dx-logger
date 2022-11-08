@@ -14,6 +14,7 @@ export class UserCallsignService {
 
   async newUserCallsign(dto: AddUserCallsignDto) {
     const newUserCallsign = new this.userCallsignModel({
+      userID: dto.userID,
       userCallsign: dto.userCallsign,
       calsignStartDate: dto.calsignStartDate,
       calsignEndDate: dto.calsignEndDate,
@@ -25,6 +26,7 @@ export class UserCallsignService {
   async getUserCallsigns() {
     const userCallsigns = await this.userCallsignModel.find().exec();
     return userCallsigns.map(callsign => ({
+      userID: callsign.userID,
       userCallsign: callsign.userCallsign,
       calsignStartDate: callsign.calsignStartDate,
       calsignEndDate: callsign.calsignEndDate,
@@ -34,6 +36,7 @@ export class UserCallsignService {
   async getSingleUserCallsign(userCallsignId: string) {
     const callsign = await this.findUserCallsign(userCallsignId);
     return {
+      userID: callsign.userID,
       userCallsign: callsign.userCallsign,
       calsignStartDate: callsign.calsignStartDate,
       calsignEndDate: callsign.calsignEndDate,
@@ -45,6 +48,9 @@ export class UserCallsignService {
     dto: UpdateUserCallsignDto,
   ) {
     const updatedUserCallsign = await this.findUserCallsign(userCallsignId);
+    if (dto.userID) {
+      updatedUserCallsign.userID = dto.userID;
+    }
     if (dto.userCallsign) {
       updatedUserCallsign.userCallsign = dto.userCallsign;
     }

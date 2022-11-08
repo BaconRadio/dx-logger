@@ -16,7 +16,7 @@ export class UpdateClubCallsignDto {
   
   //  !----------!  //
 
-  // clubID should not be changed using updateClubID(), end users should create a new ClubCallsign
+  // clubID should not be changed using updateClubCallsign(), end users should create a new ClubCallsign
   // document. Update functionality is provided only to corect data entry errors. 
   // ONLY USE THIS IF YOU KNOW WHAT YOU'RE DOING AND WHY YOU HAVE TO DO IT THAT WAY!!!!!
   

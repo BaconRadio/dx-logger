@@ -14,6 +14,7 @@ export class StationCallsignService {
 
   async newStationCallsign(dto: AddStationCallsignDto) {
     const newStationCallsign = new this.stationCallsignModel({
+      stationID: dto.stationID,
       stationCallsign: dto.stationCallsign,
       calsignStartDate: dto.calsignStartDate,
       calsignEndDate: dto.calsignEndDate,
@@ -25,6 +26,7 @@ export class StationCallsignService {
   async getStationCallsigns() {
     const stationCallsigns = await this.stationCallsignModel.find().exec();
     return stationCallsigns.map(callsign => ({
+      stationID: callsign.stationID,
       stationCallsign: callsign.stationCallsign,
       calsignStartDate: callsign.calsignStartDate,
       calsignEndDate: callsign.calsignEndDate,
@@ -34,6 +36,7 @@ export class StationCallsignService {
   async getSingleStationCallsign(stationCallsignId: string) {
     const callsign = await this.findStationCallsign(stationCallsignId);
     return {
+      stationID: callsign.stationID,
       stationCallsign: callsign.stationCallsign,
       calsignStartDate: callsign.calsignStartDate,
       calsignEndDate: callsign.calsignEndDate,
@@ -45,6 +48,9 @@ export class StationCallsignService {
     dto: UpdateStationCallsignDto,
   ) {
     const updatedStationCallsign = await this.findStationCallsign(stationCallsignId);
+    if (dto.stationID) {
+      updatedStationCallsign.stationID = dto.stationID;
+    }
     if (dto.stationCallsign) {
       updatedStationCallsign.stationCallsign = dto.stationCallsign;
     }

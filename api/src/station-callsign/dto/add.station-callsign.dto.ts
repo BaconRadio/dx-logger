@@ -17,6 +17,10 @@ export class AddStationCallsignDto {
 
   @IsNotEmpty()
   @IsString()
+  stationID: string;
+  
+  @IsNotEmpty()
+  @IsString()
   stationCallsign: string;
 
   @IsNotEmpty()

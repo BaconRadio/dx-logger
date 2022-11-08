@@ -17,6 +17,10 @@ export class AddUserCallsignDto {
 
   @IsNotEmpty()
   @IsString()
+  userID: string;
+  
+  @IsNotEmpty()
+  @IsString()
   userCallsign: string;
 
   @IsNotEmpty()

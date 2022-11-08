@@ -16,6 +16,18 @@ export class UpdateUserCallsignDto {
   
   //  !----------!  //
 
+  // userID should not be changed using updateUserCallsign(), end users should create a new UserCallsign
+  // document. Update functionality is provided only to corect data entry errors. 
+  // ONLY USE THIS IF YOU KNOW WHAT YOU'RE DOING AND WHY YOU HAVE TO DO IT THAT WAY!!!!!
+  
+  //  !----------!  //
+  
+  @IsOptional()
+  @IsString()
+  userID: string;
+  
+  //  !----------!  //
+
   // userCallsign should not be changed using updateUserCallsign(), end users should create a new UserCallsign
   // document with the change and set the calsignEndDate to be the curent day. Update functionality is provided
   // only to corect data entry errors.
